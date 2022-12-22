@@ -1,6 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 namespace KUMO
 {
@@ -10,6 +12,9 @@ namespace KUMO
 
     public class DialogueSystem : MonoBehaviour
     {
+
+        private PlayerInput playerInput;
+
         [SerializeField, Header("對話間隔"), Range(0, 0.5f)]
         private float dialogueIntervalTime = 0.1f;
         [SerializeField, Header("開頭對話")]
@@ -24,6 +29,8 @@ namespace KUMO
         private TextMeshProUGUI textContent;
         private GameObject goTriangle;
 
+        private UnityEvent onDialogueFinish;
+
         private void Awake()
         {
             groupDialogue = GameObject.Find("畫布對話系統").GetComponent<CanvasGroup>();
@@ -32,8 +39,22 @@ namespace KUMO
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
+            playerInput = GameObject.Find("PlayerCapsule").GetComponent<PlayerInput>();
+
+            StartDialogue(dialogueOpening);
+
+        }
+        /// <summary>
+        /// 開始對話
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="_onDialogueFinish"></param>
+        public void StartDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
+        {
+            playerInput.enabled = false;
             StartCoroutine(FadeGroup());
-            StartCoroutine(TypeEffect());
+            StartCoroutine(TypeEffect(data));
+            onDialogueFinish = _onDialogueFinish;
 
         }
 
@@ -47,21 +68,21 @@ namespace KUMO
 
             for (int i =0; i< 10; i++)
             {
-                groupDialogue.alpha += 0.1f;
+                groupDialogue.alpha += increase;
                 yield return new WaitForSeconds(0.04f);
             }
         }
 
-        private IEnumerator TypeEffect()
+        private IEnumerator TypeEffect(DialogueData data)
         {
-            textName.text = dialogueOpening.dialogueName;
-            for (int j = 0; j < dialogueOpening.dialogueContents.Length; j++)
+            textName.text = data.dialogueName;
+            for (int j = 0; j < data.dialogueContents.Length; j++)
             {
                 textContent.text = "";
                 goTriangle.SetActive(false);
 
 
-                string dialogue = dialogueOpening.dialogueContents[j];
+                string dialogue = data.dialogueContents[j];
 
                 for (int i = 0; i < dialogue.Length; i++)
                 {
@@ -78,9 +99,14 @@ namespace KUMO
                 }
 
                 print("<color=#993300>玩家按下按鍵!</color>");
+                playerInput.enabled = true;
+                onDialogueFinish?.Invoke();//?. 當onDialogueFinish 沒有值時不執行
+
             }
 
             StartCoroutine(FadeGroup(false));
+
+            
         }
     }
 }
