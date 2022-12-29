@@ -14,6 +14,9 @@ namespace KUMO
         [SerializeField, Header("對話結束後的事件")]
         private UnityEvent onDialogueFinish;
 
+        [SerializeField, Header("啟動後對話結束後的事件")]
+        private UnityEvent onDialogueFinishAfterActive;
+
         [SerializeField, Header("啟動道具")]
         private GameObject propActive;
         [SerializeField, Header("啟動後的對話資料")]
@@ -42,7 +45,7 @@ namespace KUMO
                 }
                 else
                 {
-                    dialogueSystem.StartDialogue(dataDialogueActive);
+                    dialogueSystem.StartDialogue(dataDialogueActive , onDialogueFinishAfterActive);
                 }
                 
             }

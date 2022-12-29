@@ -359,6 +359,7 @@
 "Assets/script/InteractableSystem.cs"
 "Assets/script/LearnCoroutine.cs"
 "Assets/script/LearnLoop.cs"
+"Assets/script/SoundSystem.cs"
 "Assets/StarterAssets/FirstPersonController/Scripts/BasicRigidBodyPush.cs"
 "Assets/StarterAssets/FirstPersonController/Scripts/FirstPersonController.cs"
 "Assets/StarterAssets/InputSystem/StarterAssetsInputs.cs"
