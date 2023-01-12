@@ -1,5 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - ReadmeEditor
     Assembly-CSharp.dll:
     - BasicRigidBodyPush
     - KUMO.DialogueData
@@ -7,6 +9,7 @@ ScriptsOnlyBuild:
     - KUMO.InteractableSystem
     - KUMO.LearnCoroutine
     - KUMO.SoundSystem
+    - Readme
     - StarterAssets.FirstPersonController
     - StarterAssets.StarterAssetsInputs
     Cinemachine.dll:
@@ -55,10 +58,12 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.InputBinding
     - UnityEngine.InputSystem.InputControlScheme
     - UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
+    - UnityEngine.InputSystem.InputSettings/iOSSettings
     - UnityEngine.InputSystem.PlayerInput/ActionEvent
     - UnityEngine.InputSystem.PlayerInput/ControlsChangedEvent
     - UnityEngine.InputSystem.PlayerInput/DeviceLostEvent
     - UnityEngine.InputSystem.PlayerInput/DeviceRegainedEvent
+    - UnityEngine.InputSystem.iOS.PrivacyDataUsage
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
     - TMPro.FontAssetCreationSettings
@@ -1566,4 +1571,4 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - "Assets/\u5834\u666F/\u904A\u6232\u5834\u666F.unity"
-  playerPath: D:/Unity/GitHub_save/Unity_Homework3D_4/Web
+  playerPath: D:/Unity/GitHub_save/Unity_Homework3D_4/Web01
